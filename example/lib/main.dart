@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // show dialog
             Get.dialog(
               GBPrimePayQRCode(
+                collectionRef: FirebaseFirestore.instance.collection("payment"),
                 referenceNo: referenceNo,
                 detail: "Sample T-Shirt",
                 amount: amount,

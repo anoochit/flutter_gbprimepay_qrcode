@@ -24,6 +24,7 @@ class GBPrimePayQRCode extends StatelessWidget {
     required this.failMessage2,
     required this.failButtonTitle,
     required this.failButtonOnTap,
+    required this.collectionRef,
   });
 
   final String referenceNo;
@@ -41,6 +42,8 @@ class GBPrimePayQRCode extends StatelessWidget {
   final String failMessage2;
   final String failButtonTitle;
   final VoidCallback failButtonOnTap;
+
+  final CollectionReference<Map<String, dynamic>> collectionRef;
 
   final apiEndpoint = "https://api.gbprimepay.com/v3/qrcode";
 
@@ -120,7 +123,7 @@ class GBPrimePayQRCode extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.all(16.0),
               child: StreamBuilder(
-                stream: FirebaseFirestore.instance.collection("payments").doc(referenceNo).snapshots(),
+                stream: collectionRef.doc(referenceNo).snapshots(),
                 builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> paymentSnapshot) {
                   if (paymentSnapshot.hasError) {
                     return Center(
