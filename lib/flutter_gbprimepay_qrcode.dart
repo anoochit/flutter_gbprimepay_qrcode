@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+// A widget that displays a QR code for GBPrimePay payment
 class GBPrimePayQRCode extends StatelessWidget {
+  // Constructor for the GBPrimePayQRCode widget
   const GBPrimePayQRCode({
     super.key,
     required this.referenceNo,
@@ -27,6 +29,7 @@ class GBPrimePayQRCode extends StatelessWidget {
     required this.collectionRef,
   });
 
+  // Properties for the GBPrimePayQRCode widget
   final String referenceNo;
   final double amount;
   final String token;
