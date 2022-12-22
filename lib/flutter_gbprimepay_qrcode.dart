@@ -1,7 +1,5 @@
 library flutter_gbprimepay_qrcode;
 
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -78,9 +76,8 @@ class GBPrimePayQRCode extends StatelessWidget {
     map['detail'] = detail;
 
     try {
-      http.Response response = await http.post(Uri.parse(apiEndpoint), body: map);
-      log('status code = ${response.statusCode}');
-      log('referenceNo = $referenceNo');
+      http.Response response =
+          await http.post(Uri.parse(apiEndpoint), body: map);
       if (response.statusCode == 200) {
         return response.bodyBytes;
       } else {
@@ -143,7 +140,8 @@ class GBPrimePayQRCode extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: StreamBuilder(
                 stream: collectionRef.doc(referenceNo).snapshots(),
-                builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> paymentSnapshot) {
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> paymentSnapshot) {
                   // has error snapshot
                   if (paymentSnapshot.hasError) {
                     return Center(
@@ -154,7 +152,8 @@ class GBPrimePayQRCode extends StatelessWidget {
                   }
 
                   // loading
-                  if (paymentSnapshot.connectionState == ConnectionState.waiting) {
+                  if (paymentSnapshot.connectionState ==
+                      ConnectionState.waiting) {
                     return const Center(
                       child: Card(
                         color: Colors.white,
