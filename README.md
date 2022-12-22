@@ -33,7 +33,7 @@ final amount = 1.0;
 Get.dialog(
     GBPrimePayQRCode(
     // A reference to the Cloud FireStore collection where payment results will be stored
-    collectionRef: FirebaseFirestore.instance.collection("payment"),
+    collectionRef: FirebaseFirestore.instance.collection("payments"),
     // A unique reference number for the payment
     referenceNo: referenceNo,
     // A description of the item being purchased
@@ -62,6 +62,27 @@ Get.dialog(
   // Use the safe area of the screen to avoid overlaps with the system UI
   useSafeArea: true,
 );
+```
+
+Cloud function for call back URL from GBPrimePay
+
+```javascript
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+admin.initializeApp();
+
+exports.webhookGBPay = functions.https.onRequest(async (req, res) => {
+  functions.logger.log("message", req.body);
+
+  // add data payment data to cloud firestore
+  await admin
+    .firestore()
+    .collection("payments")
+    .doc(req.body.referenceNo)
+    .set(req.body);
+
+  res.status(200).send();
+});
 ```
 
 In this example, the GBPrimePayQRCode widget is being shown in a dialog and listens for payment results using the provided collectionRef. The backgroundUrl is a callback URL that GBPrimePay will send the payment result to. The token is the GBPrimePay token provided by the service. The widget also includes messages and button titles for both successful and failed payments.
