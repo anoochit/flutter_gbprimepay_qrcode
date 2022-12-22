@@ -1,3 +1,11 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Init release
+
+## 0.0.2
+
+- Update LICENSE to MIT
+
+## 0.0.3
+
+- Change LICENSE to BSD-3-clause
