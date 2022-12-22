@@ -1,7 +1,9 @@
 name: flutter_gbprimepay_qrcode
-description: A new Flutter package project.
+description: A GBPrimePay QRCode payment package.
 version: 0.0.1
-homepage: null
+homepage: https://github.com/anoochit/flutter_gbprimepay_qrcode
+repository: https://github.com/anoochit/flutter_gbprimepay_qrcode
+issue_tracker: https://github.com/anoochit/flutter_gbprimepay_qrcode/issues
 
 environment:
   sdk: ">=2.18.6 <3.0.0"

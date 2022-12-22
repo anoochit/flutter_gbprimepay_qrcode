@@ -11,29 +11,48 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A GBPrimePay QRCode package let's you request a QRCode image from QRCash service from GBPrimePay.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Show QRCode from QRCash Service
+- Listen payment result and store payment result using a query snapshot via Cloud FireStore
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+A GBPrimePay QRCode package let's you request a QRCode image from QRCash service from GBPrimePay. This package store and listen payment result via Cloud FireStore.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Add dialog to popup a QRCode using Dialog.builder() or Get.builder to show a GNPrimePayQRCode widget. see more detail in [example](https://github.com/anoochit/flutter_gbprimepay_qrcode/tree/master/example) folder.
+
+- `collectionRef` to keep track payment result
+- `backgroundUrl` a call back URL which GBPrimePay will send a payment result to
+- `token`a GBPrimePay token
 
 ```dart
-const like = 'sample';
+// create timestamp as referenceId
+final referenceNo = "202212220001";
+final amount = 1.0;
+
+// show dialog with QRCode
+Get.dialog(
+    GBPrimePayQRCode(
+    collectionRef: FirebaseFirestore.instance.collection("payment"),
+    referenceNo: referenceNo,
+    detail: "Sample T-Shirt",
+    amount: amount,
+    backgroundUrl: BACKGROUND_URL,
+    token: GB_TOKEN,
+    completeMessage1: "Payment recieved!",
+    completeMessage2: "Thank You",
+    completeButtonTitle: "Close",
+    completeButtonOnTap: () => Get.back(),
+    failMessage1: "Payment not complete!",
+    failMessage2: "Try other payment method",
+    failButtonTitle: "Close",
+    failButtonOnTap: () => Get.back(),
+    ),
+    useSafeArea: true,
+);
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
