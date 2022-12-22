@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // create timestamp as referenceId
             final referenceNo = DateTime.now().millisecondsSinceEpoch.toString();
-            final amount = 1.0;
+            const amount = 1.0;
 
             // show dialog
             Get.dialog(
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               useSafeArea: true,
             );
           },
-          child: Text("Pay via QRCode"),
+          child: const Text("Pay via QRCode"),
         ),
       ),
     );

@@ -9,3 +9,7 @@
 ## 0.0.3
 
 - Change LICENSE to BSD-3-clause
+
+## 0.0.4
+
+- Update dartdoc comment

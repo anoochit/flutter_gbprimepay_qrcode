@@ -8,9 +8,25 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-// A widget that displays a QR code for GBPrimePay payment
+/// A widget that displays a QR code for GBPrimePay payment
 class GBPrimePayQRCode extends StatelessWidget {
-  // Constructor for the GBPrimePayQRCode widget
+  /// Constructor for the GBPrimePayQRCode widget
+  ///
+  /// The following arguments are required:
+  ///  - `referenceNo`: The reference number for the payment.
+  ///  - `backgroundUrl`: The URL for the background image to be displayed.
+  ///  - `amount`: The amount to be paid.
+  ///  - `token`: The token to be used for the payment.
+  ///  - `detail`: The details of the payment.
+  ///  - `completeMessage1`: The first message to be displayed when the payment is complete.
+  ///  - `completeMessage2`: The second message to be displayed when the payment is complete.
+  ///  - `completeButtonTitle`: The title of the button to be displayed when the payment is complete.
+  ///  - `completeButtonOnTap`: The callback function to be executed when the button is tapped when the payment is complete.
+  ///  - `failMessage1`: The first message to be displayed when the payment fails.
+  ///  - `failMessage2`: The second message to be displayed when the payment fails.
+  ///  - `failButtonTitle`: The title of the button to be displayed when the payment fails.
+  ///  - `failButtonOnTap`: The callback function to be executed when the button is tapped when the payment fails.
+  ///  - `collectionRef`: The collection reference to be used for the payment.
   const GBPrimePayQRCode({
     super.key,
     required this.referenceNo,
@@ -50,7 +66,9 @@ class GBPrimePayQRCode extends StatelessWidget {
 
   final apiEndpoint = "https://api.gbprimepay.com/v3/qrcode";
 
-  // request QRCode payment
+  /// Request QRCode payment.
+  ///
+  /// Returns a [Future] that resolves to the QRCode data as a [Uint8List] on success, or `null` on failure.
   Future<Uint8List?> getGBPrimePayQRCode() async {
     var map = <String, dynamic>{};
     map['token'] = token;
@@ -62,15 +80,13 @@ class GBPrimePayQRCode extends StatelessWidget {
     try {
       http.Response response = await http.post(Uri.parse(apiEndpoint), body: map);
       log('status code = ${response.statusCode}');
-      log('referenceNo = ${referenceNo}');
+      log('referenceNo = $referenceNo');
       if (response.statusCode == 200) {
-        //log('bodyBytes = ${response.bodyBytes}');
         return response.bodyBytes;
       } else {
         return null;
       }
     } catch (e) {
-      log('$e');
       return null;
     }
   }
@@ -128,6 +144,7 @@ class GBPrimePayQRCode extends StatelessWidget {
               child: StreamBuilder(
                 stream: collectionRef.doc(referenceNo).snapshots(),
                 builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> paymentSnapshot) {
+                  // has error snapshot
                   if (paymentSnapshot.hasError) {
                     return Center(
                       child: Card(
@@ -136,6 +153,7 @@ class GBPrimePayQRCode extends StatelessWidget {
                     );
                   }
 
+                  // loading
                   if (paymentSnapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
                       child: Card(
@@ -148,13 +166,11 @@ class GBPrimePayQRCode extends StatelessWidget {
                     );
                   }
 
+                  // show paymane result message
                   final payment = paymentSnapshot.data;
                   if (payment!.exists != false) {
                     // has payment data show message
-                    log("has payment data");
                     final doc = paymentSnapshot.data;
-                    log('response doc = ${doc}');
-                    log('result code = ${doc?["resultCode"]}');
                     if ('${doc?["resultCode"]}' == "00") {
                       // show complete message
                       return Card(
@@ -168,13 +184,13 @@ class GBPrimePayQRCode extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$completeMessage1'),
-                              Text('$completeMessage2'),
+                              Text(completeMessage1),
+                              Text(completeMessage2),
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: OutlinedButton(
                                   onPressed: () => completeButtonOnTap(),
-                                  child: Text('$completeButtonTitle'),
+                                  child: Text(completeButtonTitle),
                                 ),
                               ),
                             ],
@@ -194,13 +210,13 @@ class GBPrimePayQRCode extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('$failMessage1'),
-                              Text('$failMessage2'),
+                              Text(failMessage1),
+                              Text(failMessage2),
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: OutlinedButton(
                                   onPressed: () => failButtonOnTap(),
-                                  child: Text('$failButtonTitle'),
+                                  child: Text(failButtonTitle),
                                 ),
                               ),
                             ],
@@ -210,7 +226,6 @@ class GBPrimePayQRCode extends StatelessWidget {
                     }
                   } else {
                     // no payment data show QR Code
-                    log("no payment data show QRCode");
                     return Image.memory(snapshot.data);
                   }
                 },
