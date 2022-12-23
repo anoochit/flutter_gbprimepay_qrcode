@@ -64,13 +64,15 @@ class _MyHomePageState extends State<MyHomePage> {
               // pay with gbprimapay qrcode
 
               // create timestamp as referenceId
-              final referenceNo = DateTime.now().millisecondsSinceEpoch.toString();
+              final referenceNo =
+                  DateTime.now().millisecondsSinceEpoch.toString();
               const amount = 1.0;
 
               // show dialog
               Get.dialog(
                 GBPrimePayQRCode(
-                  collectionRef: FirebaseFirestore.instance.collection("payment"),
+                  collectionRef:
+                      FirebaseFirestore.instance.collection("payment"),
                   referenceNo: referenceNo,
                   detail: "Sample T-Shirt",
                   amount: amount,
