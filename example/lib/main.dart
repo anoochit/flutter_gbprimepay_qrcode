@@ -53,39 +53,44 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // pay with gbprimapay qrcode
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: LayoutBuilder(builder: (context, constraints) {
+          return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(constraints.maxWidth, 48),
+            ),
+            onPressed: () {
+              // pay with gbprimapay qrcode
 
-            // create timestamp as referenceId
-            final referenceNo =
-                DateTime.now().millisecondsSinceEpoch.toString();
-            const amount = 1.0;
+              // create timestamp as referenceId
+              final referenceNo = DateTime.now().millisecondsSinceEpoch.toString();
+              const amount = 1.0;
 
-            // show dialog
-            Get.dialog(
-              GBPrimePayQRCode(
-                collectionRef: FirebaseFirestore.instance.collection("payment"),
-                referenceNo: referenceNo,
-                detail: "Sample T-Shirt",
-                amount: amount,
-                backgroundUrl: dotenv.env['BACKGROUND_URL'] ?? "",
-                token: dotenv.env['GB_TOKEN'] ?? "",
-                completeMessage1: "Payment recieved!",
-                completeMessage2: "Thank You",
-                completeButtonTitle: "Close",
-                completeButtonOnTap: () => Get.back(),
-                failMessage1: "Payment not complete!",
-                failMessage2: "Try other payment method",
-                failButtonTitle: "Close",
-                failButtonOnTap: () => Get.back(),
-              ),
-              useSafeArea: true,
-            );
-          },
-          child: const Text("Pay via QRCode"),
-        ),
+              // show dialog
+              Get.dialog(
+                GBPrimePayQRCode(
+                  collectionRef: FirebaseFirestore.instance.collection("payment"),
+                  referenceNo: referenceNo,
+                  detail: "Sample T-Shirt",
+                  amount: amount,
+                  backgroundUrl: dotenv.env['BACKGROUND_URL'] ?? "",
+                  token: dotenv.env['GB_TOKEN'] ?? "",
+                  completeMessage1: "Payment recieved!",
+                  completeMessage2: "Thank You",
+                  completeButtonTitle: "Close",
+                  completeButtonOnTap: () => Get.back(),
+                  failMessage1: "Payment not complete!",
+                  failMessage2: "Try other payment method",
+                  failButtonTitle: "Close",
+                  failButtonOnTap: () => Get.back(),
+                ),
+                useSafeArea: true,
+              );
+            },
+            child: const Text("Pay via QRCode"),
+          );
+        }),
       ),
     );
   }
