@@ -13,3 +13,9 @@
 ## 0.0.4
 
 - Update dartdoc comment
+
+## 0.0.4
+
+- Update flutter format
+- Fix typo in license
+- Update readme
