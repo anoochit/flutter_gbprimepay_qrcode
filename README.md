@@ -11,6 +11,15 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
+[![pub package](https://img.shields.io/pub/v/flutter_gbprimepay_qrcode)](https://pub.dartlang.org/packages/flutter_gbprimepay_qrcode)
+[![likes](https://img.shields.io/pub/likes/flutter_gbprimepay_qrcode)](https://pub.dartlang.org/packages/flutter_gbprimepay_qrcode/score)
+[![points](https://img.shields.io/pub/points/flutter_gbprimepay_qrcode)](https://pub.dartlang.org/packages/flutter_gbprimepay_qrcode/score)
+[![popularity](https://img.shields.io/pub/popularity/flutter_gbprimepay_qrcode)](https://pub.dartlang.org/packages/flutter_gbprimepay_qrcode/score)
+[![license](https://img.shields.io/github/license/anoochit/flutter_gbprimepay_qrcode)](https://pub.dartlang.org/packages/flutter_gbprimepay_qrcode)
+[![stars](https://img.shields.io/github/stars/anoochit/flutter_gbprimepay_qrcode)](https://github.com/xclud/flutter_gbprimepay_qrcode/stargazers)
+[![forks](https://img.shields.io/github/forks/anoochit/flutter_gbprimepay_qrcode)](https://github.com/xclud/flutter_gbprimepay_qrcode/network/members)
+[![sdk version](https://badgen.net/pub/sdk-version/flutter_gbprimepay_qrcode)](https://pub.dartlang.org/packages/flutter_gbprimepay_qrcode)
+
 The GBPrimePay QRCode package allows you to request a QRCode image from the QRCash service provided by GBPrimePay.
 
 ## Features
