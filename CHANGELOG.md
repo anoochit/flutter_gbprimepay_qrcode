@@ -19,3 +19,7 @@
 - Update flutter format
 - Fix typo in license
 - Update readme
+
+## 0.0.6
+
+- Update dependency and support Dart 3

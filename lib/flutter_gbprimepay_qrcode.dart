@@ -101,7 +101,6 @@ class GBPrimePayQRCode extends StatelessWidget {
             if (snapshot.hasError) {
               return const Center(
                 child: Card(
-                  color: Colors.white,
                   child: Padding(
                     padding: EdgeInsets.all(32.0),
                     child: Text("Cannot load QRCode"),
@@ -114,7 +113,6 @@ class GBPrimePayQRCode extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: Card(
-                  color: Colors.white,
                   child: Padding(
                     padding: EdgeInsets.all(32.0),
                     child: CircularProgressIndicator(),
@@ -156,7 +154,6 @@ class GBPrimePayQRCode extends StatelessWidget {
                       ConnectionState.waiting) {
                     return const Center(
                       child: Card(
-                        color: Colors.white,
                         child: Padding(
                           padding: EdgeInsets.all(32.0),
                           child: CircularProgressIndicator(),

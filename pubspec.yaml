@@ -1,19 +1,19 @@
 name: flutter_gbprimepay_qrcode
 description: The GBPrimePay QRCode package allows you to request a QRCode image from the QRCash service provided by GBPrimePay.
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/anoochit/flutter_gbprimepay_qrcode
 repository: https://github.com/anoochit/flutter_gbprimepay_qrcode
 issue_tracker: https://github.com/anoochit/flutter_gbprimepay_qrcode/issues
 
 environment:
-  sdk: ">=2.18.6 <3.0.0"
+  sdk: ">=2.18.6 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   cloud_firestore: ^4.2.0
   flutter:
     sdk: flutter
-  http: ^0.13.5
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
