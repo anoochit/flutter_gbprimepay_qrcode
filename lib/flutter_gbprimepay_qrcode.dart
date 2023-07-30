@@ -16,6 +16,15 @@ class GBPrimePayQRCode extends StatelessWidget {
   ///  - `amount`: The amount to be paid.
   ///  - `token`: The token to be used for the payment.
   ///  - `detail`: The details of the payment.
+  ///  - `customerName`: The customer name
+  ///  - `customerEmail`: The customer email
+  ///  - `merchantDefined1`: The merchant defined value 1
+  ///  - `merchantDefined2`: The merchant defined value 2
+  ///  - `merchantDefined3`: The merchant defined value 3
+  ///  - `merchantDefined4`: The merchant defined value 4
+  ///  - `merchantDefined5`: The merchant defined value 5
+  ///  - `customerTelephone`: The customer telephone
+  ///  - `customerAddress`: The customer address
   ///  - `completeMessage1`: The first message to be displayed when the payment is complete.
   ///  - `completeMessage2`: The second message to be displayed when the payment is complete.
   ///  - `completeButtonTitle`: The title of the button to be displayed when the payment is complete.
@@ -94,7 +103,6 @@ class GBPrimePayQRCode extends StatelessWidget {
     map['referenceNo'] = referenceNo;
     map['amount'] = '$amount';
     map['detail'] = detail;
-
     map['customerName'] = customerName;
     map['customerEmail'] = customerEmail;
     map['merchantDefined1'] = merchantDefined1;
