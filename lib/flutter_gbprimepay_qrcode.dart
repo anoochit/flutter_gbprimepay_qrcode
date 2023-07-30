@@ -32,6 +32,15 @@ class GBPrimePayQRCode extends StatelessWidget {
     required this.amount,
     required this.token,
     required this.detail,
+    this.customerName = '',
+    this.customerEmail = '',
+    this.merchantDefined1 = '',
+    this.merchantDefined2 = '',
+    this.merchantDefined3 = '',
+    this.merchantDefined4 = '',
+    this.merchantDefined5 = '',
+    this.customerTelephone = '',
+    this.customerAddress = '',
     required this.completeMessage1,
     required this.completeMessage2,
     required this.completeButtonTitle,
@@ -44,11 +53,22 @@ class GBPrimePayQRCode extends StatelessWidget {
   });
 
   // Properties for the GBPrimePayQRCode widget
+  // token , amount , referenceNo , backgroundUrl , detail , customerName , customerEmail , merchantDefined1 , merchantDefined2 , merchantDefined3 , merchantDefined4 , merchantDefined5 , customerTelephone and customerAddress
   final String referenceNo;
   final double amount;
   final String token;
   final String backgroundUrl;
   final String detail;
+
+  final String customerName;
+  final String customerEmail;
+  final String merchantDefined1;
+  final String merchantDefined2;
+  final String merchantDefined3;
+  final String merchantDefined4;
+  final String merchantDefined5;
+  final String customerTelephone;
+  final String customerAddress;
 
   final String completeMessage1;
   final String completeMessage2;
@@ -74,6 +94,16 @@ class GBPrimePayQRCode extends StatelessWidget {
     map['referenceNo'] = referenceNo;
     map['amount'] = '$amount';
     map['detail'] = detail;
+
+    map['customerName'] = customerName;
+    map['customerEmail'] = customerEmail;
+    map['merchantDefined1'] = merchantDefined1;
+    map['merchantDefined2'] = merchantDefined2;
+    map['merchantDefined3'] = merchantDefined3;
+    map['merchantDefined4'] = merchantDefined4;
+    map['merchantDefined5'] = merchantDefined5;
+    map['customerTelephone'] = customerTelephone;
+    map['customerAddress'] = customerAddress;
 
     try {
       http.Response response =
@@ -144,6 +174,7 @@ class GBPrimePayQRCode extends StatelessWidget {
                   if (paymentSnapshot.hasError) {
                     return Center(
                       child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Text('${snapshot.error}'),
                       ),
                     );
@@ -154,6 +185,7 @@ class GBPrimePayQRCode extends StatelessWidget {
                       ConnectionState.waiting) {
                     return const Center(
                       child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Padding(
                           padding: EdgeInsets.all(32.0),
                           child: CircularProgressIndicator(),
@@ -170,6 +202,7 @@ class GBPrimePayQRCode extends StatelessWidget {
                     if ('${doc?["resultCode"]}' == "00") {
                       // show complete message
                       return Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Padding(
                           padding: const EdgeInsets.only(
                             left: 32.0,
@@ -196,6 +229,7 @@ class GBPrimePayQRCode extends StatelessWidget {
                     } else {
                       // show fail message
                       return Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Padding(
                           padding: const EdgeInsets.only(
                             left: 32.0,
@@ -222,7 +256,15 @@ class GBPrimePayQRCode extends StatelessWidget {
                     }
                   } else {
                     // no payment data show QR Code
-                    return Image.memory(snapshot.data);
+                    return Center(
+                      child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Image.memory(snapshot.data),
+                        ),
+                      ),
+                    );
                   }
                 },
               ),

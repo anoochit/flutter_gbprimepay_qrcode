@@ -31,3 +31,8 @@ build/
 example/android/app/google-services.json
 example/lib/firebase_options.dart
 example/.env
+functions/*
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
